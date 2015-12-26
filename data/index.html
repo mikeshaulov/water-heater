@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>WiFi Shutter Configurator</title>
+        <script src="jquery.min.js"></script>
+        
+        <script>
+            $( document ).ready(function() {
+                $.getJSON('/scanwifis', function(data) {
+                $.each(data, function(key, value) {
+                            $('#WIFI_NAME').append(new Option(value, value ));
+                        });
+                });
+                                
+            });
+                                
+        </script>
+    </head>
+    <body>
+        <h2>Welcome to WiFi Water Heater Configuration</h2>
+        
+        <p>Please enter the following configurations:</p>
+        
+        <form action="/configure" method="post">
+                        
+            <p>WiFi:&nbsp;<select id="WIFI_NAME" name ="WIFI_NAME" /></select></p>
+            
+            <p>WiFi Passsword:&nbsp;<input maxlength="30" name="WIFI_PASSWORD" type="password" /></p>
+            
+            <p>Water Heater Friendly Name:&nbsp;<input maxlength="10" name="MDNS_NAME" type="text" /></p>
+            
+            <p>Water Heater Maximum Active Time (hours):&nbsp;<input maxlength="10" name="MAX_TIME" type="text" value="1" /></p>
+            
+            <p>MQTT Server:&nbsp;<input maxlength="255" name="MQTT_SERVER" type="text" /></p>
+            
+            <p>MQTT Topic:&nbsp;<input maxlength="50" name="MQTT_TOPIC" type="text" /></p>
+            
+            <p>MQTT Username:&nbsp;<input maxlength="30" name="MQTT_USER" type="text" /></p>
+            
+            <p>MQTT Password:&nbsp;<input maxlength="30" name="MQTT_PASSWORD" type="password" /></p>
+            
+            <p><input name="Submit" type="submit" value="Configure" />&nbsp;<input type="reset" value="Clear" /></p>
+        </form>
+        
+    </body>
+</html>
